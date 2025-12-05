@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Testing Center Record</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<div class="container py-5">
+    <h2 class="mb-4">Edit Testing Center Record</h2>
+    <form method="post" class="border p-4 bg-white rounded shadow-sm">
+        <div class="mb-3">
+            <label class="form-label">Center Name:</label>
+            <input name="name" class="form-control" value="{{ center.name }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Location:</label>
+            <input name="location" class="form-control" value="{{ center.location }}" required>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label class="form-label">Test Type:</label>
+                <select name="test_type" class="form-select" required>
+                    <option value="">Select</option>
+                    <option {% if center.test_type == 'PCR' %}selected{% endif %}>PCR</option>
+                    <option {% if center.test_type == 'Antigen' %}selected{% endif %}>Antigen</option>
+                    <option {% if center.test_type == 'Antibody' %}selected{% endif %}>Antibody</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Test Date:</label>
+                <input name="test_date" type="date" class="form-control" value="{{ center.test_date }}" required>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Result:</label>
+                <select name="result" class="form-select" required>
+                    <option value="">Select</option>
+                    <option {% if center.result == 'Positive' %}selected{% endif %}>Positive</option>
+                    <option {% if center.result == 'Negative' %}selected{% endif %}>Negative</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Citizen ID:</label>
+            <input name="citizen_id" class="form-control" value="{{ center.citizen_id }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Administered By:</label>
+            <input name="administered_by" class="form-control" value="{{ center.administered_by }}" required>
+        </div>
+
+        <button type="submit" class="btn btn-success">Update</button>
+        <a href="/testing_centers" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+</body>
+</html>

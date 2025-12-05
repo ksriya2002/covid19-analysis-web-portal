@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hospitals</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<div class="container py-4">
+    <h2 class="mb-4">Add New Hospital</h2>
+    <form action="/hospital/add" method="post" class="border p-4 bg-white rounded shadow-sm">
+
+        <div class="mb-3">
+            <label class="form-label">Hospital Name:</label>
+            <input name="name" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Location:</label>
+            <select name="location" class="form-select" required>
+                <option value="">Select State</option>
+                <option>AL</option><option>AK</option><option>AZ</option><option>AR</option><option>CA</option>
+                <option>CO</option><option>CT</option><option>DE</option><option>FL</option><option>GA</option>
+                <option>HI</option><option>ID</option><option>IL</option><option>IN</option><option>IA</option>
+                <option>KS</option><option>KY</option><option>LA</option><option>ME</option><option>MD</option>
+                <option>MA</option><option>MI</option><option>MN</option><option>MS</option><option>MO</option>
+                <option>MT</option><option>NE</option><option>NV</option><option>NH</option><option>NJ</option>
+                <option>NM</option><option>NY</option><option>NC</option><option>ND</option><option>OH</option>
+                <option>OK</option><option>OR</option><option>PA</option><option>RI</option><option>SC</option>
+                <option>SD</option><option>TN</option><option>TX</option><option>UT</option><option>VT</option>
+                <option>VA</option><option>WA</option><option>WV</option><option>WI</option><option>WY</option>
+            </select>
+            
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label class="form-label">Capacity:</label>
+                <input name="capacity" type="number" class="form-control" required>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Available Beds:</label>
+                <input name="available_beds" type="number" class="form-control" required>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Contact Info:</label>
+            <input name="contact_info" class="form-control" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Add Hospital</button>
+    </form>
+
+    <hr class="my-5">
+
+    <h2>All Hospitals</h2>
+    <div class="table-responsive bg-white rounded shadow-sm">
+        <table class="table table-bordered table-striped mt-3">
+            <thead class="table-light">
+                <tr>
+                    <th>Name</th>
+                    <th>Location</th>
+                    <th>Capacity</th>
+                    <th>Available Beds</th>
+                    <th>Contact Info</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for h in hospitals %}
+                <tr>
+                    <td>{{ h.name }}</td>
+                    <td>{{ h.location }}</td>
+                    <td>{{ h.capacity }}</td>
+                    <td>{{ h.available_beds }}</td>
+                    <td>{{ h.contact_info }}</td>
+                    <td>
+                        <a href="/hospital/edit/{{ h._id }}" class="btn btn-sm btn-warning">Edit</a>
+                        <a href="/hospital/delete/{{ h._id }}" class="btn btn-sm btn-danger" onclick="return confirm('Delete this hospital?');">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

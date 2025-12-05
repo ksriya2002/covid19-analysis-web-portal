@@ -1,0 +1,53 @@
+<!-- templates/edit_vaccination.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Vaccination</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<div class="container py-5">
+    <h2 class="mb-4">Edit Vaccination Record</h2>
+    <form method="post" class="border p-4 bg-white rounded shadow-sm">
+
+        <div class="mb-3">
+            <label class="form-label">Citizen ID:</label>
+            <input name="citizen_id" class="form-control" value="{{ vaccination.citizen_id }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Vaccine Type:</label>
+            <select name="vaccine_type" class="form-select" required>
+                <option value="">Select</option>
+                <option {% if vaccination.vaccine_type == 'Pfizer' %}selected{% endif %}>Pfizer</option>
+                <option {% if vaccination.vaccine_type == 'Moderna' %}selected{% endif %}>Moderna</option>
+                <option {% if vaccination.vaccine_type == 'J&J' %}selected{% endif %}>J&J</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Dose Number:</label>
+            <input name="dose_number" type="number" class="form-control" value="{{ vaccination.dose_number }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Date Administered:</label>
+            <input name="date_administered" type="date" class="form-control" value="{{ vaccination.date_administered }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Administered By:</label>
+            <input name="administered_by" class="form-control" value="{{ vaccination.administered_by }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Location:</label>
+            <input name="location" class="form-control" value="{{ vaccination.location }}" required>
+        </div>
+
+        <button type="submit" class="btn btn-success">Update</button>
+        <a href="/vaccinations" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+</body>
+</html>

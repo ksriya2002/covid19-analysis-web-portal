@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Testing Centers</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<div class="container py-4">
+    <h2 class="mb-4">Add New Testing Center Record</h2>
+    <form action="/testing_center/add" method="post" class="border p-4 bg-white rounded shadow-sm">
+
+        <div class="mb-3">
+            <label class="form-label">Center Name:</label>
+            <input name="name" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Location:</label>
+            <select name="location" class="form-select" required>
+                <option value="">Select State</option>
+                <option>AL</option><option>AK</option><option>AZ</option><option>AR</option><option>CA</option>
+                <option>CO</option><option>CT</option><option>DE</option><option>FL</option><option>GA</option>
+                <option>HI</option><option>ID</option><option>IL</option><option>IN</option><option>IA</option>
+                <option>KS</option><option>KY</option><option>LA</option><option>ME</option><option>MD</option>
+                <option>MA</option><option>MI</option><option>MN</option><option>MS</option><option>MO</option>
+                <option>MT</option><option>NE</option><option>NV</option><option>NH</option><option>NJ</option>
+                <option>NM</option><option>NY</option><option>NC</option><option>ND</option><option>OH</option>
+                <option>OK</option><option>OR</option><option>PA</option><option>RI</option><option>SC</option>
+                <option>SD</option><option>TN</option><option>TX</option><option>UT</option><option>VT</option>
+                <option>VA</option><option>WA</option><option>WV</option><option>WI</option><option>WY</option>
+            </select>
+            
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label class="form-label">Test Type:</label>
+                <select name="test_type" class="form-select" required>
+                    <option value="">Select</option>
+                    <option>PCR</option>
+                    <option>Antigen</option>
+                    <option>Antibody</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Test Date:</label>
+                <input name="test_date" type="date" class="form-control" required>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Result:</label>
+                <select name="result" class="form-select" required>
+                    <option value="">Select</option>
+                    <option>Positive</option>
+                    <option>Negative</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Citizen ID:</label>
+            <input name="citizen_id" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Administered By:</label>
+            <input name="administered_by" class="form-control" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Add Record</button>
+    </form>
+
+    <hr class="my-5">
+
+    <h2>All Testing Records</h2>
+    <div class="table-responsive bg-white rounded shadow-sm">
+        <table class="table table-bordered table-striped mt-3">
+            <thead class="table-light">
+                <tr>
+                    <th>Center Name</th>
+                    <th>Location</th>
+                    <th>Test Type</th>
+                    <th>Test Date</th>
+                    <th>Result</th>
+                    <th>Citizen ID</th>
+                    <th>Administered By</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for center in testing_centers %}
+                <tr>
+                    <td>{{ center.name }}</td>
+                    <td>{{ center.location }}</td>
+                    <td>{{ center.test_type }}</td>
+                    <td>{{ center.test_date }}</td>
+                    <td>{{ center.result }}</td>
+                    <td>{{ center.citizen_id }}</td>
+                    <td>{{ center.administered_by }}</td>
+                    <td>
+                        <a href="/testing_center/edit/{{ center._id }}" class="btn btn-sm btn-warning">Edit</a>
+                        <a href="/testing_center/delete/{{ center._id }}" class="btn btn-sm btn-danger" onclick="return confirm('Delete this record?');">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>
+

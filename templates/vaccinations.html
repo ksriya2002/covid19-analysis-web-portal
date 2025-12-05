@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vaccinations</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<div class="container py-4">
+    <h2 class="mb-4">Add New Vaccination</h2>
+    <form action="/vaccination/add" method="post" class="border p-4 bg-white rounded shadow-sm">
+
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label class="form-label">Citizen ID:</label>
+                <input name="citizen_id" class="form-control" required>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Vaccine Type:</label>
+                <select name="vaccine_type" class="form-select" required>
+                    <option value="">Select Type</option>
+                    <option>Pfizer</option>
+                    <option>Moderna</option>
+                    <option>J&J</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Dose Number:</label>
+                <input name="dose_number" type="number" min="1" class="form-control" required>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label class="form-label">Date Administered:</label>
+                <input name="date_administered" type="date" class="form-control" required>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Administered By:</label>
+                <input name="administered_by" class="form-control" required>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Location:</label>
+            <input name="location" class="form-control" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Add Vaccination</button>
+    </form>
+
+    <hr class="my-5">
+
+    <h2>All Vaccinations</h2>
+    <div class="table-responsive bg-white rounded shadow-sm">
+        <table class="table table-bordered table-striped mt-3">
+            <thead class="table-light">
+                <tr>
+                    <th>Citizen ID</th>
+                    <th>Vaccine Type</th>
+                    <th>Dose</th>
+                    <th>Date</th>
+                    <th>Administered By</th>
+                    <th>Location</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for v in vaccinations %}
+                <tr>
+                    <td>{{ v.citizen_id }}</td>
+                    <td>{{ v.vaccine_type }}</td>
+                    <td>{{ v.dose_number }}</td>
+                    <td>{{ v.date_administered }}</td>
+                    <td>{{ v.administered_by }}</td>
+                    <td>{{ v.location }}</td>
+                    <td>
+                        <a href="/vaccination/edit/{{ v._id }}" class="btn btn-sm btn-warning">Edit</a>
+                        <a href="/vaccination/delete/{{ v._id }}" class="btn btn-sm btn-danger" onclick="return confirm('Delete this vaccination record?');">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>
+
+

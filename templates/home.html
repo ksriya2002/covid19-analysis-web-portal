@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COVID-19 Mitigation Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script> 
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f4f9ff;
+        }
+        .hero-img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        .dashboard-title {
+            text-align: center;
+            font-weight: 600;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            color: #144272;
+        }
+        .dashboard-subtitle {
+            text-align: center;
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 30px;
+        }
+        .card {
+            transition: transform 0.3s;
+            border: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .insight-header {
+            font-weight: 600;
+            font-size: 20px;
+            margin-top: 50px;
+            text-align: center;
+            color: #144272;
+        }
+        .chart-wrapper {
+            margin-top: 40px;
+            margin-bottom: 60px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <img src="{{ url_for('static', filename='dashboard.png') }}" alt="COVID Dashboard" class="hero-img">
+
+        <h1 class="dashboard-title">COVID-19 Mitigation Portal</h1>
+        <p class="dashboard-subtitle">Track citizens, vaccinations, testing, and more with clarity and insight.</p>
+
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+                <a href="/citizens" class="text-decoration-none">
+                    <div class="card text-white bg-primary">
+                        <div class="card-body">
+                            <h5 class="card-title">Citizens</h5>
+                            <p class="card-text">View and manage citizen data.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col">
+                <a href="/vaccinations" class="text-decoration-none">
+                    <div class="card text-white bg-success">
+                        <div class="card-body">
+                            <h5 class="card-title">Vaccinations</h5>
+                            <p class="card-text">Track vaccine doses administered.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col">
+                <a href="/covid_cases" class="text-decoration-none">
+                    <div class="card text-white bg-danger">
+                        <div class="card-body">
+                            <h5 class="card-title">COVID Cases</h5>
+                            <p class="card-text">Monitor case status and recovery.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col">
+                <a href="/hospitals" class="text-decoration-none">
+                    <div class="card text-white bg-warning">
+                        <div class="card-body">
+                            <h5 class="card-title">Hospitals</h5>
+                            <p class="card-text">Hospital capacity and contacts.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col">
+                <a href="/testing_centers" class="text-decoration-none">
+                    <div class="card text-white bg-info">
+                        <div class="card-body">
+                            <h5 class="card-title">Testing Centers</h5>
+                            <p class="card-text">Add and view test records.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col">
+                <a href="/awareness_programs" class="text-decoration-none">
+                    <div class="card text-white bg-secondary">
+                        <div class="card-body">
+                            <h5 class="card-title">Awareness Programs</h5>
+                            <p class="card-text">Outreach and education campaigns.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>    
+
+        <!-- Insights Section -->
+        <h2 class="insight-header">Insights</h2>
+        <div class="row row-cols-1 row-cols-md-2 g-4 mt-2 mb-5">
+            <div class="col">
+                <a href="/insight/vaccinated_tested_awareness" class="text-decoration-none">
+                    <div class="card border-primary">
+                        <div class="card-body">
+                            <h5 class="card-title text-primary">Vaccinated, Tested Negative, Awareness Participants</h5>
+                            <p class="card-text">Citizens vaccinated, tested negative, and attended awareness programs.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col">
+                <a href="/insight/hospital_positive_cases" class="text-decoration-none">
+                    <div class="card border-warning">
+                        <div class="card-body">
+                            <h5 class="card-title text-warning">Hospitals Treating Positive Cases</h5>
+                            <p class="card-text">Hospitals handling COVID-positive citizens based on testing data.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col">
+                <a href="/insight/positive_hospitalized_vaccine" class="text-decoration-none">
+                    <div class="card border-success">
+                        <div class="card-body">
+                            <h5 class="card-title text-success">Positive, Hospitalized, and Vaccinated Citizens</h5>
+                            <p class="card-text">Citizens who tested positive, were hospitalized, and received vaccines.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col">
+                <a href="/insight/vaccinated_then_positive" class="text-decoration-none">
+                    <div class="card border-danger">
+                        <div class="card-body">
+                            <h5 class="card-title text-danger">Vaccinated Citizens Who Tested Positive</h5>
+                            <p class="card-text">Citizens who got vaccinated but later tested positive for COVID-19.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Dashboard Charts -->
+        {% if chart1 %}
+        <div class="chart-wrapper">
+            {{ chart1|safe }}
+        </div>
+        {% endif %}
+        {% if chart2 %}
+        <div class="chart-wrapper">
+            {{ chart2|safe }}
+        </div>
+        {% endif %}
+        {% if chart3 %}
+        <div class="chart-wrapper">
+            {{ chart3|safe }}
+        </div>
+        {% endif %}
+
+    </div>
+</body>
+</html>

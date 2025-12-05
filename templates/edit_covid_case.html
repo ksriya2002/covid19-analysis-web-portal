@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit COVID Case</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<div class="container py-5">
+    <h2 class="mb-4">Edit COVID Case</h2>
+    <form method="post" class="border p-4 bg-white rounded shadow-sm">
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label class="form-label">Citizen ID:</label>
+                <input name="citizen_id" class="form-control" value="{{ case.citizen_id }}" required>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Date Positive:</label>
+                <input name="date_positive" type="date" class="form-control" value="{{ case.date_positive }}" required>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Severity:</label>
+                <select name="severity" class="form-select" required>
+                    <option value="">Select</option>
+                    <option {% if case.severity == 'Mild' %}selected{% endif %}>Mild</option>
+                    <option {% if case.severity == 'Moderate' %}selected{% endif %}>Moderate</option>
+                    <option {% if case.severity == 'Severe' %}selected{% endif %}>Severe</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label class="form-label">Hospitalized:</label>
+                <select name="hospitalized" class="form-select" required>
+                    <option value="">Select</option>
+                    <option {% if case.hospitalized == 'Yes' %}selected{% endif %}>Yes</option>
+                    <option {% if case.hospitalized == 'No' %}selected{% endif %}>No</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Recovery Status:</label>
+                <select name="recovery_status" class="form-select" required>
+                    <option value="">Select</option>
+                    <option {% if case.recovery_status == 'Recovered' %}selected{% endif %}>Recovered</option>
+                    <option {% if case.recovery_status == 'In Treatment' %}selected{% endif %}>In Treatment</option>
+                    <option {% if case.recovery_status == 'Deceased' %}selected{% endif %}>Deceased</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Date Updated:</label>
+                <input name="date_updated" type="date" class="form-control" value="{{ case.date_updated }}" required>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-success">Update</button>
+        <a href="/covid_cases" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+</body>
+</html>
