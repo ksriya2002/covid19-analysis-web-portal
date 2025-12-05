@@ -152,12 +152,13 @@ This repository reflects my implementation work and the final structure of the p
 ---
 
 ## Disclaimer
-Only selected screenshots are included in this README.  
-Additional charts, insight pages, and features are available within the live application but not shown here to keep the documentation concise.
+Only selected screenshots are included in this README. 
+Additional visualizations and insights exist in the full application but are not displayed here for brevity.
 
 ---
 
 ## Contact
 
 Email: **sriyareddy696@gmail.com**  
-Feel free to reach out for questions and feedbacks.
+Feel free to reach out with any questions or feedback.
+
