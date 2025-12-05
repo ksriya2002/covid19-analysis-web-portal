@@ -7,14 +7,17 @@ The portal integrates CRUD functionality, database-driven analytics, and interac
 
 ## Project Overview
 
-This system centralizes multiple COVID-19 data sources into one platform where users can:
+This system centralizes multiple COVID-19 data sources into a single platform where users can maintain records, analyze trends, and explore meaningful insights.  
 
-- Maintain records across six modules  
-- Visualize vaccination and demographic trends  
-- Explore analytical insights that combine data from multiple collections  
-- Review program participation, hospitalization links, and vaccination effectiveness  
+The platform is designed as an analytical tool to help users understand vaccination progress, testing outcomes, hospital capacity, and awareness program participation using real-time data stored in MongoDB.
 
-The application is designed with a modular architecture, separating routes, templates, visualizations, and database operations for maintainability and clarity.
+Key functionality includes:
+- Maintaining records across six modules (Citizens, Vaccinations, COVID Cases, Hospitals, Testing Centers, Awareness Programs)  
+- Visualizing vaccination and demographic trends using Plotly  
+- Exploring analytical insights that combine data from multiple collections  
+- Reviewing how vaccination status, testing results, and hospitalization patterns relate in real scenarios  
+
+The application follows a modular architecture, separating routes, templates, visualizations, and database operations for clarity and maintainability.
 
 ---
 
