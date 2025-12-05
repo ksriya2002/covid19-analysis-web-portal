@@ -20,6 +20,11 @@ Key functionality includes:
 The application follows a modular architecture, separating routes, templates, visualizations, and database operations for clarity and maintainability.
 
 ---
+## About the Data
+
+This application uses synthetic sample data inserted into MongoDB collections to simulate real-world COVID-19 information across citizens, vaccinations, testing, hospitals, and awareness programs. The focus of the project is to demonstrate full CRUD workflows, cross-collection insights, and interactive visualizations.
+
+---
 
 ## Project Preview
 
